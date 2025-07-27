@@ -17,4 +17,9 @@ async function createUser(user) {
   return await User.create(user);
 }
 
-export { createUser, getAllEvents, getEventById };
+async function findUserByCredentials(credentials) {
+  const user = await User.findOne(credentials).lean();
+  return user;
+}
+
+export { createUser, findUserByCredentials, getAllEvents, getEventById };
