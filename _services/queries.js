@@ -1,3 +1,4 @@
+import { User } from '@/_models/user';
 import { replaceMongoIdInArray, replaceMongoIdInObject } from '@/_utils/data-util';
 
 const { Event } = require('@/_models/event');
@@ -12,4 +13,8 @@ async function getEventById(id) {
   return replaceMongoIdInObject(event);
 }
 
-export { getAllEvents, getEventById };
+async function createUser(user) {
+  return await User.create(user);
+}
+
+export { createUser, getAllEvents, getEventById };
