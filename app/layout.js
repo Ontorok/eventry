@@ -1,4 +1,5 @@
 import Navbar from '@/_components/layout/Navbar';
+import { AuthProvider } from '@/_providers/AuthProvider';
 import { dbConnect } from '@/_services/mongo';
 import './globals.css';
 
@@ -7,8 +8,10 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <main>{children}</main>
+        <AuthProvider>
+          <Navbar />
+          <main>{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );

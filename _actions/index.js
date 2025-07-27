@@ -15,7 +15,7 @@ async function login(formData) {
   const credentials = Object.fromEntries(formData);
   const found = await findUserByCredentials(credentials);
   if (found) {
-    redirect('/');
+    return found;
   } else {
     throw new Error(`Invalid Credentials!!`);
   }
