@@ -1,5 +1,6 @@
 import { User } from '@/_models/user';
 import { replaceMongoIdInArray, replaceMongoIdInObject } from '@/_utils/data-util';
+import mongoose from 'mongoose';
 
 const { Event } = require('@/_models/event');
 
@@ -22,4 +23,18 @@ async function findUserByCredentials(credentials) {
   return replaceMongoIdInObject(user);
 }
 
-export { createUser, findUserByCredentials, getAllEvents, getEventById };
+async function updateInterest(eventId, authId) {
+  const event = await Event.findById(eventId);
+  if (event) {
+    await new Promise((res) => setTimeout(res, 3000));
+    const foundUser = event.interested_ids.find((id) => id.toString() === authId);
+    if (foundUser) {
+      event.interested_ids.pull(new mongoose.Types.ObjectId(authId));
+    } else {
+      event.interested_ids.push(new mongoose.Types.ObjectId(authId));
+    }
+  }
+  event.save();
+}
+
+export { createUser, findUserByCredentials, getAllEvents, getEventById, updateInterest };

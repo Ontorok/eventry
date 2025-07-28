@@ -17,11 +17,3 @@ export default function EventDetails({ details, swags }) {
     </div>
   );
 }
-
-{
-  /* <li>🎉 Free Tshirt</li>
-              <li>🕹️ Networking</li>
-              <li>🎯 Networking</li>
-              <li>📌 Free Foods</li>
-              <li>🚀 Free Wifi</li> */
-}

@@ -4,6 +4,7 @@ import ActionButtons from '../common/ActionButtons';
 
 export default function EventCard({ event }) {
   const { id, name, imageUrl, location, interested_ids, going_ids } = event;
+  const toJSONInterestedIds = interested_ids.map((id) => id.toString());
   return (
     <div className="overflow-hidden rounded-md bg-[#242526]">
       <Image src={imageUrl} alt={name} className="w-full" width={480} height={238.34} />
@@ -17,7 +18,7 @@ export default function EventCard({ event }) {
           <span className="mx-1">|</span>
           <span>{going_ids?.length} Going</span>
         </div>
-        <ActionButtons />
+        <ActionButtons eventId={id} interestedUserIds={toJSONInterestedIds} />
       </div>
     </div>
   );

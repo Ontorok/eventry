@@ -3,6 +3,7 @@ import ActionButtons from '../common/ActionButtons';
 
 export default function Hero({ event }) {
   const { id, name, imageUrl, location, interested_ids, going_ids } = event;
+  const toJSONInterestedIds = interested_ids.map((id) => id.toString());
   return (
     <section className="container">
       <div className="bg-gradient-to-b from-slate-200/20 to-slate-800/30">
@@ -19,7 +20,7 @@ export default function Hero({ event }) {
             <span>{going_ids?.length} Going</span>
           </div>
         </div>
-        <ActionButtons fromDetails={true} />
+        <ActionButtons fromDetails={true} eventId={id} interestedUserIds={toJSONInterestedIds} />
       </div>
     </section>
   );
