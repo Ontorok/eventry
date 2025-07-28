@@ -31,7 +31,7 @@ export default function LoginForm() {
       {/* email */}
       <div>
         <label htmlFor="email">Email Address</label>
-        <input type="email" name="email" id="email" defaultValue={'nasir@mail.com'} />
+        <input type="email" name="email" id="email" defaultValue={'nasir.ahmed@bizzntek.com'} />
       </div>
       {/* password */}
       <div>
