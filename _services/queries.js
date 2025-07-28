@@ -1,12 +1,17 @@
+import { Event } from '@/_models/event';
 import { User } from '@/_models/user';
 import { replaceMongoIdInArray, replaceMongoIdInObject } from '@/_utils/data-util';
 import mongoose from 'mongoose';
 
-const { Event } = require('@/_models/event');
-
-async function getAllEvents() {
-  const events = await Event.find().lean();
-  return replaceMongoIdInArray(events);
+async function getAllEvents(query) {
+  let allEvents = [];
+  if (query) {
+    const regex = new RegExp(query, 'i');
+    allEvents = await Event.find({ name: { $regex: regex } }).lean();
+  } else {
+    allEvents = await Event.find().lean();
+  }
+  return replaceMongoIdInArray(allEvents);
 }
 
 async function getEventById(id) {
