@@ -21,12 +21,11 @@ export default function ActionButtons({ eventId, interestedUserIds, goingIds, fr
   }
 
   function markGoing() {
-    router.push(`/payment/${eventId}`);
-    // if (auth) {
-    //   router.push(`/payment/${eventId}`);
-    // } else {
-    //   router.push('/login');
-    // }
+    if (auth) {
+      router.push(`/payment/${eventId}`);
+    } else {
+      router.push('/login');
+    }
   }
 
   return (
@@ -38,7 +37,7 @@ export default function ActionButtons({ eventId, interestedUserIds, goingIds, fr
         Interested
       </button>
       <button
-        // disabled={auth && isGoing}
+        disabled={auth && isGoing}
         onClick={markGoing}
         className={`text-center w-full ${isGoing ? 'bg-green-600 hover:bg-green-700' : 'bg-[#464849] hover:bg-[#3C3D3D] border-[#5F5F5F]/50'} py-2 px-2 rounded-md border shadow-sm cursor-pointer transition-colors active:translate-y-1 disabled:cursor-not-allowed`}
       >

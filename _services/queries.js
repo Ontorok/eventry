@@ -1,7 +1,8 @@
 import { Event } from '@/_models/event';
 import { User } from '@/_models/user';
+import { sleep } from '@/_utils/common-utils';
 import { replaceMongoIdInArray, replaceMongoIdInObject } from '@/_utils/data-util';
-import mongoose from 'mongoose';
+import mongoose, { Promise } from 'mongoose';
 
 async function getAllEvents(query) {
   let allEvents = [];
@@ -9,6 +10,7 @@ async function getAllEvents(query) {
     const regex = new RegExp(query, 'i');
     allEvents = await Event.find({ name: { $regex: regex } }).lean();
   } else {
+    await sleep(5000);
     allEvents = await Event.find().lean();
   }
   return replaceMongoIdInArray(allEvents);
